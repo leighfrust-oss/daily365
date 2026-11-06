@@ -1,0 +1,14 @@
+{
+  "name": "daily365",
+  "productName": "Daily365",
+  "version": "0.2.0",
+  "description": "365-day song and movie progress video creator",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "web:serve": "node scripts/serve-web.js"
+  },
+  "devDependencies": {
+    "electron": "^45.0.0"
+  }
+}

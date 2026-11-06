@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d10">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self' blob:; style-src 'self'; script-src 'self'">
+  <title>Daily365</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-dot"></span>DAILY365</div>
+    <nav class="tabs">
+      <button class="tab active" data-view="create">Create</button>
+      <button class="tab" data-view="plan">Plan</button>
+    </nav>
+    <button id="btnInstall" class="ghost install hidden">Install app</button>
+  </header>
+
+  <main>
+    <section id="view-create" class="view create">
+      <div class="stage">
+        <canvas id="stage" width="1080" height="1920" aria-label="Video preview"></canvas>
+      </div>
+
+      <aside class="panel">
+        <div class="group">
+          <div class="group-title">Day</div>
+          <div class="day-row">
+            <button id="dayMinus" class="icon-btn" aria-label="Previous day">&minus;</button>
+            <input id="dayInput" type="number" min="1" max="365" inputmode="numeric" aria-label="Day number">
+            <button id="dayPlus" class="icon-btn" aria-label="Next day">+</button>
+            <button id="dayToday" class="ghost">Today</button>
+          </div>
+          <div id="dayInfo" class="hint"></div>
+        </div>
+
+        <div class="group">
+          <div class="group-title">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M9 17v-13h10v13"/><path d="M9 8h10"/></svg>
+            Song
+          </div>
+          <div class="grid2">
+            <input id="song" type="text" placeholder="Song title" spellcheck="false">
+            <input id="artist" type="text" placeholder="Artist" spellcheck="false">
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-title">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"/><path d="M8 4l0 16"/><path d="M16 4l0 16"/><path d="M4 8l4 0"/><path d="M4 16l4 0"/><path d="M4 12l16 0"/><path d="M16 8l4 0"/><path d="M16 16l4 0"/></svg>
+            Movie
+          </div>
+          <div class="grid2">
+            <input id="movie" type="text" placeholder="Movie title" spellcheck="false">
+            <input id="year" type="text" placeholder="Year" inputmode="numeric" spellcheck="false">
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-title">Progress bar sound</div>
+          <div class="grid2">
+            <select id="soundStyle" aria-label="Sound style"></select>
+            <button id="soundTest" class="ghost">Test sound</button>
+          </div>
+          <label class="slider">
+            <span>Volume</span>
+            <input id="volume" type="range" min="0" max="100" step="1">
+            <output id="volumeOut"></output>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="btnPreview" class="secondary">Preview</button>
+          <button id="btnCreate" class="primary">Create today&rsquo;s video</button>
+        </div>
+        <div id="status" class="status" role="status"></div>
+        <button id="btnPostSave" class="ghost hidden">Share video</button>
+      </aside>
+    </section>
+
+    <section id="view-plan" class="view plan hidden">
+      <div class="plan-head">
+        <label class="inline">Start date <input id="startDate" type="date"></label>
+        <span id="filled" class="hint"></span>
+        <span class="spacer"></span>
+        <button id="btnImport" class="ghost">Import JSON</button>
+        <button id="btnExport" class="ghost">Export JSON</button>
+        <button id="btnJump" class="ghost">Jump to today</button>
+      </div>
+      <div id="planMsg" class="hint plan-msg"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th class="c-day">Day</th><th class="c-date">Date</th><th>Song</th><th>Artist</th><th>Movie</th><th class="c-year">Year</th></tr>
+          </thead>
+          <tbody id="planBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
